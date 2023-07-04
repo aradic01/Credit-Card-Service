@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info:
+  title: RBA Assignment API Specification
+  description: |-
+    OpenAPI 3 specification for RBA Assignment Project
+  contact:
+    email: aradic97.AR@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /person:
+    put:
+      tags:
+        - Person
+      description: 'Create a new person'
+      operationId: 'createPerson'
+      requestBody:
+        description: 'Person body'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        '201':
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: 'Invalid request'
+        '409':
+          description: 'Person with provided OIB already exists'
+    patch:
+      tags:
+        - Person
+      description: 'Update a person'
+      operationId: 'updatePerson'
+      requestBody:
+        description: 'Person body'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        '200':
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: 'Invalid request'
+        '404':
+          description: 'Person not found'
+  /person/{personOib}:
+    get:
+      tags:
+        - Person
+      description: 'Get Person by OIB'
+      operationId: 'getPersonByOib'
+      parameters:
+        - name: 'personOib'
+          in: path
+          description: 'OIB of Person to get'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: 'Person not found'
+    delete:
+      tags:
+        - Person
+      description: 'Delete Person by OIB'
+      operationId: 'deletePersonByOib'
+      parameters:
+        - name: 'personOib'
+          in: path
+          description: 'OIB of Person to delete'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+        '404':
+          description: 'Person not found'
+  /file/{personOib}:
+    get:
+      tags:
+        - File
+      description: 'Generate card template by OIB'
+      operationId: 'generateCardTemplateByOib'
+      parameters:
+        - name: 'personOib'
+          in: path
+          description: 'OIB of Person for which the card template is generated'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Successful operation'
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: 'Invalid request'
+        '404':
+          description: 'Person not found'
+        '500':
+          description: 'Internal server error'
+components:
+  schemas:
+    Person:
+      required:
+        - firstName
+        - lastName
+        - oib
+        - status
+      type: object
+      properties:
+        oib:
+          type: string
+          example: '03156791677'
+        firstName:
+          type: string
+          example: 'John'
+        lastName:
+          type: string
+          example: 'Doe'
+        status:
+          type: string
+          enum:
+            - client
+            - non-client

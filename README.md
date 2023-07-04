@@ -27,6 +27,11 @@ docker-compose up -d
 ```
 for detached mode.
 
+# Functionality
+The service supports basic CRUD operations on a Person object as well as generating new files in the "generatedFiles" folder for a person when requested.
+> Note: Only one file for a person can have an ACTIVE status, so when a new file is created, all other files are deactivated.
+> Also, when a person is deleted from the database, if it has an active file, it is deactivated.
+
 # Try it out!
 
 There is a Postman collection containing the basic API requests included in the project repository so it can be directly imported in the Postman app. The requests can than be modified for testing various data.
