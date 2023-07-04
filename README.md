@@ -10,7 +10,13 @@ There are two options when running the service:
 - Running with Maven using H2 database
 - Running it in Docker with PostgreSQL database
 
-To run the service with Maven, run the following command in the project folder Terminal:
+To run the service with Maven, run the following commands in the project folder Terminal:
+
+```bash
+mvn clean install
+```
+
+and then:
 
 ```bash
 mvn spring-boot:run
