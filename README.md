@@ -13,8 +13,15 @@ There are two options when running the service:
 To run the service with Maven, run the following command in the project folder Terminal:
 
 ```bash
+mvn spring-boot:run
+```
+
+To run it with the Docker:
+
+```bash
 mvn clean install -Pdocker -DskipTests
 ```
+
 After that, for running the docker-compose type in the following command:
 
 ```bash
@@ -34,5 +41,5 @@ The service supports basic CRUD operations on a Person object as well as generat
 
 # Try it out!
 
-There is a Postman collection containing the basic API requests included in the project repository so it can be directly imported in the Postman app. The requests can than be modified for testing various data.
+There is a Postman collection containing the basic API requests included in the project repository, so it can be directly imported in the Postman app. The requests can than be modified for testing various data.
 If you don't like Postman, you can import it in Insomnia or a similar API testing app or just use curl.
