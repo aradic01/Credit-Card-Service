@@ -22,7 +22,7 @@ and then:
 mvn spring-boot:run
 ```
 
-To run it with the Docker:
+To run it with Docker:
 
 ```bash
 mvn clean install -Pdocker -DskipTests
