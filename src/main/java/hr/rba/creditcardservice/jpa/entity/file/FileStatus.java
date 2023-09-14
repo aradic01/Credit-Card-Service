@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.jpa.entity;
+package hr.rba.creditcardservice.jpa.entity.file;
 
 public enum FileStatus {
     ACTIVE("active"), INACTIVE("inactive");

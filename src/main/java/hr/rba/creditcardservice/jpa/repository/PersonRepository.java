@@ -1,6 +1,6 @@
 package hr.rba.creditcardservice.jpa.repository;
 
-import hr.rba.creditcardservice.jpa.entity.PersonEntity;
+import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

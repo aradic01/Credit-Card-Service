@@ -4,7 +4,7 @@ import hr.rba.creditcardservice.openapi.model.Person;
 import hr.rba.creditcardservice.common.PersonMapper;
 import hr.rba.creditcardservice.exception.PersonAlreadyExistsException;
 import hr.rba.creditcardservice.exception.PersonNotFoundException;
-import hr.rba.creditcardservice.jpa.entity.PersonEntity;
+import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;
 import hr.rba.creditcardservice.jpa.repository.PersonRepository;
 import hr.rba.creditcardservice.service.contract.PersonService;
 import org.junit.jupiter.api.BeforeAll;

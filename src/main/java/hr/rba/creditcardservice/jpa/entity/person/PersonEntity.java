@@ -1,12 +1,13 @@
-package hr.rba.creditcardservice.jpa.entity;
+package hr.rba.creditcardservice.jpa.entity.person;
 
+import hr.rba.creditcardservice.jpa.entity.file.FileEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Set;
 
-@Entity(name = "people")
+@Entity(name = "persons")
 @Getter
 @Setter
 public class PersonEntity {

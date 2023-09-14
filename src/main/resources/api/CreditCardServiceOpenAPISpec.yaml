@@ -9,6 +9,51 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
+  /auth/login:
+    post:
+      tags:
+        - Login
+      description: 'Login to the app'
+      operationId: 'login'
+      security: []
+      requestBody:
+        description: 'User credentials'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: 'Successful login operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: 'Unauthorized'
+  /auth/register:
+    post:
+      tags:
+        - Register
+      description: 'App registration'
+      operationId: 'register'
+      security: []
+      requestBody:
+        description: 'User registration info'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: 'Successful registration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: 'Bad request'
+
   /person:
     put:
       tags:
@@ -123,7 +168,56 @@ paths:
         '500':
           description: 'Internal server error'
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
+    User:
+      required:
+        - firstName
+        - lastName
+        - email
+        - username
+        - password
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: 'Johnny'
+        lastName:
+          type: string
+          example: 'Doe'
+        email:
+          type: string
+          format: email
+          example: 'johnny@email.com'
+        username:
+          type: string
+          example: 'johnny123'
+        password:
+          type: string
+          format: password
+    LoginRequest:
+      required:
+        - username
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+          example: 'johndoe23'
+        password:
+          type: string
+          format: password
+    LoginResponse:
+      type: object
+      properties:
+        username:
+          type: string
+        token:
+          type: string
     Person:
       required:
         - firstName
@@ -146,3 +240,5 @@ components:
           enum:
             - client
             - non-client
+security:
+  - bearerAuth: []
