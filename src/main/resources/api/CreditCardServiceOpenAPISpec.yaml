@@ -21,14 +21,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequest'
+              $ref: '#/components/schemas/AuthRequest'
+        required: true
       responses:
         '200':
           description: 'Successful login operation'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponse'
+                $ref: '#/components/schemas/AuthResponse'
         '401':
           description: 'Unauthorized'
   /auth/register:
@@ -43,14 +44,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
       responses:
-        '200':
+        '201':
           description: 'Successful registration'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/AuthResponse'
         '400':
           description: 'Bad request'
 
@@ -174,13 +176,14 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    User:
+    RegisterRequest:
       required:
         - firstName
         - lastName
         - email
         - username
         - password
+        - role
       type: object
       properties:
         firstName:
@@ -199,7 +202,13 @@ components:
         password:
           type: string
           format: password
-    LoginRequest:
+        role:
+          type: string
+          enum:
+            - user
+            - admin
+            - manager
+    AuthRequest:
       required:
         - username
         - password
@@ -211,12 +220,12 @@ components:
         password:
           type: string
           format: password
-    LoginResponse:
+    AuthResponse:
       type: object
       properties:
-        username:
+        accessToken:
           type: string
-        token:
+        refreshToken:
           type: string
     Person:
       required:

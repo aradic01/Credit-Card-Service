@@ -1,7 +1,7 @@
-package hr.rba.creditcardservice.common;
+package hr.rba.creditcardservice.common.mapper;
 
 import hr.rba.creditcardservice.jpa.entity.user.UserEntity;
-import hr.rba.creditcardservice.openapi.model.User;
+import hr.rba.creditcardservice.openapi.model.RegisterRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -10,5 +10,5 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    User mapTo(UserEntity userEntity);
+    RegisterRequest mapTo(UserEntity userEntity);
 }
