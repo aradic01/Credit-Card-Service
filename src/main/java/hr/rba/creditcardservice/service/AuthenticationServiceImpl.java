@@ -74,7 +74,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .user(user)
                 .token(jwtToken)
                 .tokenType(TokenType.BEARER)
-                .expired(false)
                 .revoked(false)
                 .build();
         tokenRepository.save(token);
@@ -85,7 +84,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
-            token.setExpired(true);
             token.setRevoked(true);
         });
         tokenRepository.saveAll(validUserTokens);
