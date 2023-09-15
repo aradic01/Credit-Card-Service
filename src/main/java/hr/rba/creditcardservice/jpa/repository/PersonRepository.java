@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
     Optional<PersonEntity> findByOib(String oib);
-    @Query("SELECT p.personId from people p where p.oib = :oib")
+    @Query("SELECT p.personId from persons p where p.oib = :oib")
     Optional<Long> findPersonIdByOib(String oib);
     void deleteByOib(String oib);
 }

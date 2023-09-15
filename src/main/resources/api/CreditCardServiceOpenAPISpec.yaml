@@ -47,7 +47,7 @@ paths:
               $ref: '#/components/schemas/RegisterRequest'
         required: true
       responses:
-        '201':
+        '200':
           description: 'Successful registration'
           content:
             application/json:

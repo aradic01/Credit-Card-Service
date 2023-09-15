@@ -16,7 +16,7 @@ public class Token {
     private long tokenId;
 
     @Column(unique = true)
-    private String value;
+    private String token;
 
     @Enumerated(EnumType.STRING)
     private TokenType tokenType;
@@ -24,7 +24,7 @@ public class Token {
     private boolean revoked;
     private boolean expired;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(referencedColumnName = "userId")
-    public UserEntity user;
+    private UserEntity user;
 }
