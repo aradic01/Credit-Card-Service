@@ -4,5 +4,5 @@ import hr.rba.creditcardservice.openapi.model.*;
 
 public interface AuthenticationService {
     User register(RegisterRequest registerRequest);
-    AuthResponse authenticate(AuthRequest registerRequest);
+    AuthResponse authenticate(AuthRequest authRequest);
 }

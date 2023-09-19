@@ -19,11 +19,13 @@ public class AuthController implements AuthApi {
 
     @Override
     public ResponseEntity<AuthResponse> login(AuthRequest authRequest) {
-        return ResponseEntity.ok().body(authenticationService.authenticate(authRequest));
+        return ResponseEntity.ok()
+                .body(authenticationService.authenticate(authRequest));
     }
 
     @Override
     public ResponseEntity<User> register(RegisterRequest registerRequest) {
-        return ResponseEntity.ok().body(authenticationService.register(registerRequest));
+        return ResponseEntity.ok()
+                .body(authenticationService.register(registerRequest));
     }
 }

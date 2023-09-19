@@ -4,11 +4,11 @@ package hr.rba.creditcardservice.configuration;
 import com.nimbusds.jose.jwk.*;
 import com.nimbusds.jose.jwk.source.*;
 import com.nimbusds.jose.proc.*;
-import hr.rba.creditcardservice.service.*;
+import hr.rba.creditcardservice.common.helper.*;
+import lombok.extern.slf4j.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.*;
-import org.springframework.security.config.*;
 import org.springframework.security.config.annotation.authentication.configuration.*;
 import org.springframework.security.config.annotation.web.builders.*;
 import org.springframework.security.config.annotation.web.configuration.*;
@@ -21,19 +21,18 @@ import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.*;
 import org.springframework.security.web.*;
 
-import static hr.rba.creditcardservice.jpa.entity.user.Role.*;
-
 @Configuration
 @EnableWebSecurity
+@Slf4j
 public class SecurityConfiguration {
 
-    private final RSAService rsaService;
+    private final RSAHelper rsaHelper;
 
     private static final String PUBLIC_URL_MATCHERS = "/auth/**";
     private static final String PROTECTED_URL_MATCHERS = "/person/**";
 
-    public SecurityConfiguration(RSAService rsaService) {
-        this.rsaService = rsaService;
+    public SecurityConfiguration(RSAHelper rsaHelper) {
+        this.rsaHelper = rsaHelper;
     }
 
     @Bean
@@ -48,15 +47,17 @@ public class SecurityConfiguration {
                         .requestMatchers(PUBLIC_URL_MATCHERS).permitAll()
                         .requestMatchers(PROTECTED_URL_MATCHERS)
                         .hasAnyRole("ADMIN", "MANAGER")
-                        .anyRequest().authenticated());
-
-        httpSecurity.sessionManagement(sessionConfig -> sessionConfig
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider);
 
-        httpSecurity.oauth2ResourceServer(configurer -> configurer
+        httpSecurity.sessionManagement(sessionConfig -> sessionConfig
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        httpSecurity.oauth2ResourceServer(serverConfigurer -> serverConfigurer
                 .jwt(customizer -> customizer
-                        .jwtAuthenticationConverter(jwtAuthenticationConverter)));
+                        .jwtAuthenticationConverter(jwtAuthenticationConverter)
+                )
+        );
 
         return httpSecurity.build();
     }
@@ -81,17 +82,17 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public JwtDecoder jwtDecoder(){
+    public JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder
-                .withPublicKey(rsaService.getPublicKey())
+                .withPublicKey(rsaHelper.getPublicKey())
                 .build();
     }
 
     @Bean
     public JwtEncoder jwtEncoder() {
         JWK jwk = new RSAKey
-                .Builder(rsaService.getPublicKey())
-                .privateKey(rsaService.getPrivateKey())
+                .Builder(rsaHelper.getPublicKey())
+                .privateKey(rsaHelper.getPrivateKey())
                 .build();
 
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
@@ -100,7 +101,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter(){
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
         jwtGrantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");

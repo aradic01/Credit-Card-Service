@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.service;
+package hr.rba.creditcardservice.common.helper;
 
 import hr.rba.creditcardservice.exception.*;
 import jakarta.annotation.*;
@@ -10,7 +10,7 @@ import java.security.interfaces.*;
 
 @Component
 @Getter
-public class RSAService {
+public class RSAHelper {
 
     private RSAPublicKey publicKey;
     private RSAPrivateKey privateKey;

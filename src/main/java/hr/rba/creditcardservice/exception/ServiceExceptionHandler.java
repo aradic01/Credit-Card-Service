@@ -32,9 +32,15 @@ public class ServiceExceptionHandler {
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<Object> handleIoException(AuthenticationException e) {
+    public ResponseEntity<Object> handleAuthException(AuthenticationException e) {
         log.error("Error while trying to authenticate: " + e.getMessage());
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<Object> handleUserAlreadyExistsException(UserAlreadyExistsException e) {
+        log.error("Error while trying to register new user: " + e.getMessage());
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)

@@ -1,7 +1,7 @@
 package hr.rba.creditcardservice.service;
 
 import hr.rba.creditcardservice.openapi.model.Person;
-import hr.rba.creditcardservice.common.PersonMapper;
+import hr.rba.creditcardservice.common.mapper.PersonMapper;
 import hr.rba.creditcardservice.exception.PersonAlreadyExistsException;
 import hr.rba.creditcardservice.exception.PersonNotFoundException;
 import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;

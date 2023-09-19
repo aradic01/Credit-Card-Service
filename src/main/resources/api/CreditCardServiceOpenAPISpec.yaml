@@ -55,6 +55,8 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: 'Bad request'
+        '409':
+          description: 'User is already registered'
 
   /person:
     put:
@@ -183,7 +185,6 @@ components:
         - email
         - username
         - password
-        - role
       type: object
       properties:
         firstName:

@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.common;
+package hr.rba.creditcardservice.common.mapper;
 
 import hr.rba.creditcardservice.jpa.entity.user.*;
 import hr.rba.creditcardservice.openapi.model.*;
