@@ -34,10 +34,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public User registerNewUser(RegisterRequest registerRequest) {
         var user = UserMapper.INSTANCE.mapTo(registerRequest);
 
-        if (userRepository.findByUsernameOrEmail(
+        if (userRepository.existsByUsernameOrEmail(
                 registerRequest.getUsername(),
                 registerRequest.getEmail()
-        ).isPresent()) {
+        )) {
             throw new UserAlreadyExistsException("User already registered!");
         }
 
