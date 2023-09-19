@@ -1,6 +1,6 @@
 package hr.rba.creditcardservice.service.contract;
 
-import hr.rba.creditcardservice.jpa.entity.PersonEntity;
+import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;
 import hr.rba.creditcardservice.openapi.model.Person;
 
 public interface PersonService {

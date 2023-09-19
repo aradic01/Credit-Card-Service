@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.jpa.entity;
+package hr.rba.creditcardservice.jpa.entity.person;
 
 public enum PersonStatus {
     CLIENT("client"), NON_CLIENT("non-client");

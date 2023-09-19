@@ -1,9 +1,9 @@
 package hr.rba.creditcardservice.service;
 
 import hr.rba.creditcardservice.common.FileDescriptor;
-import hr.rba.creditcardservice.jpa.entity.PersonEntity;
-import hr.rba.creditcardservice.jpa.entity.FileEntity;
-import hr.rba.creditcardservice.jpa.entity.FileStatus;
+import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;
+import hr.rba.creditcardservice.jpa.entity.file.FileEntity;
+import hr.rba.creditcardservice.jpa.entity.file.FileStatus;
 import hr.rba.creditcardservice.jpa.repository.FileRepository;
 import hr.rba.creditcardservice.service.contract.FileService;
 import hr.rba.creditcardservice.service.contract.PersonService;
