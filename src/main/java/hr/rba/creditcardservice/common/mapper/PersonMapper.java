@@ -1,8 +1,8 @@
-package hr.rba.creditcardservice.common;
+package hr.rba.creditcardservice.common.mapper;
 
 import hr.rba.creditcardservice.openapi.model.Person;
-import hr.rba.creditcardservice.jpa.entity.PersonEntity;
-import hr.rba.creditcardservice.jpa.entity.PersonStatus;
+import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;
+import hr.rba.creditcardservice.jpa.entity.person.PersonStatus;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

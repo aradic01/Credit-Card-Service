@@ -1,5 +1,6 @@
-package hr.rba.creditcardservice.jpa.entity;
+package hr.rba.creditcardservice.jpa.entity.file;
 
+import hr.rba.creditcardservice.jpa.entity.person.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -2,8 +2,8 @@ package hr.rba.creditcardservice.service;
 
 import hr.rba.creditcardservice.common.FileDescriptor;
 import hr.rba.creditcardservice.exception.PersonNotFoundException;
-import hr.rba.creditcardservice.jpa.entity.PersonEntity;
-import hr.rba.creditcardservice.jpa.entity.PersonStatus;
+import hr.rba.creditcardservice.jpa.entity.person.PersonEntity;
+import hr.rba.creditcardservice.jpa.entity.person.PersonStatus;
 import hr.rba.creditcardservice.jpa.repository.FileRepository;
 import hr.rba.creditcardservice.service.contract.FileService;
 import hr.rba.creditcardservice.service.contract.PersonService;
