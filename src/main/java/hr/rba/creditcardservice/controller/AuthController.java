@@ -2,7 +2,7 @@ package hr.rba.creditcardservice.controller;
 
 import hr.rba.creditcardservice.openapi.api.*;
 import hr.rba.creditcardservice.openapi.model.*;
-import hr.rba.creditcardservice.service.contract.*;
+import hr.rba.creditcardservice.security.service.contract.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.validation.annotation.*;

@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.service.contract;
+package hr.rba.creditcardservice.security.service.contract;
 
 import hr.rba.creditcardservice.openapi.model.*;
 

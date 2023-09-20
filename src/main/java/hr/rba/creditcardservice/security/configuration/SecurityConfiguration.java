@@ -1,10 +1,10 @@
-package hr.rba.creditcardservice.configuration;
+package hr.rba.creditcardservice.security.configuration;
 
 
 import com.nimbusds.jose.jwk.*;
 import com.nimbusds.jose.jwk.source.*;
 import com.nimbusds.jose.proc.*;
-import hr.rba.creditcardservice.common.helper.*;
+import hr.rba.creditcardservice.security.helper.*;
 import lombok.extern.slf4j.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
@@ -29,7 +29,7 @@ public class SecurityConfiguration {
     private final RSAHelper rsaHelper;
 
     private static final String PUBLIC_URL_MATCHERS = "/auth/**";
-    private static final String PROTECTED_URL_MATCHERS = "/person/**";
+    private static final String[] PROTECTED_URL_MATCHERS = new String[] {"/person/**", "/file/**"};
 
     public SecurityConfiguration(RSAHelper rsaHelper) {
         this.rsaHelper = rsaHelper;

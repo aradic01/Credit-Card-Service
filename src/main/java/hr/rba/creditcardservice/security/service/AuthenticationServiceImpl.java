@@ -1,8 +1,8 @@
-package hr.rba.creditcardservice.service;
+package hr.rba.creditcardservice.security.service;
 
 import hr.rba.creditcardservice.openapi.model.*;
+import hr.rba.creditcardservice.security.service.contract.*;
 import hr.rba.creditcardservice.service.contract.*;
-import hr.rba.creditcardservice.service.contract.TokenService;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.*;
 import org.springframework.stereotype.*;
@@ -12,7 +12,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
-    private  final TokenService tokenService;
+    private final TokenService tokenService;
 
     public AuthenticationServiceImpl(UserService userService, AuthenticationManager authenticationManager, TokenService tokenService) {
         this.userService = userService;

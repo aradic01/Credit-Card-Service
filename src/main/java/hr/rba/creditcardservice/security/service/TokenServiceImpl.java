@@ -1,6 +1,6 @@
-package hr.rba.creditcardservice.service;
+package hr.rba.creditcardservice.security.service;
 
-import hr.rba.creditcardservice.service.contract.*;
+import hr.rba.creditcardservice.security.service.contract.*;
 import org.springframework.security.core.*;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.*;

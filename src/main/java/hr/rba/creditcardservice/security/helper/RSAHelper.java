@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.common.helper;
+package hr.rba.creditcardservice.security.helper;
 
 import hr.rba.creditcardservice.exception.*;
 import jakarta.annotation.*;
@@ -23,8 +23,8 @@ public class RSAHelper {
         } catch (NoSuchAlgorithmException e) {
             throw new InternalErrorException(e.getMessage(), e.getCause());
         }
-        publicKey = (RSAPublicKey) keypair.getPublic();
-        privateKey = (RSAPrivateKey) keypair.getPrivate();
+        this.publicKey = (RSAPublicKey) keypair.getPublic();
+        this.privateKey = (RSAPrivateKey) keypair.getPrivate();
     }
 
     public KeyPair generateRsaKeypair() throws NoSuchAlgorithmException {
