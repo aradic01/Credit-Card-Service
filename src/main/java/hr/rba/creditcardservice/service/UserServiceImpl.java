@@ -6,10 +6,12 @@ import hr.rba.creditcardservice.jpa.entity.user.*;
 import hr.rba.creditcardservice.jpa.repository.*;
 import hr.rba.creditcardservice.openapi.model.*;
 import hr.rba.creditcardservice.service.contract.*;
+import lombok.extern.slf4j.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -22,6 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerNewUser(RegisterRequest registerRequest) {
+
+        log.info("Registering new user..");
+
         var user = UserMapper.INSTANCE.mapTo(registerRequest);
 
         if (userRepository.existsByUsernameOrEmail(

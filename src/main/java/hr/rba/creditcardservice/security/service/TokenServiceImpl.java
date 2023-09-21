@@ -1,6 +1,7 @@
 package hr.rba.creditcardservice.security.service;
 
 import hr.rba.creditcardservice.security.service.contract.*;
+import lombok.extern.slf4j.*;
 import org.springframework.security.core.*;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.*;
@@ -9,6 +10,7 @@ import java.time.*;
 import java.util.stream.*;
 
 @Service
+@Slf4j
 public class TokenServiceImpl implements TokenService {
 
     private final JwtEncoder jwtEncoder;
@@ -19,6 +21,9 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String generateJwt(Authentication authentication) {
+
+        log.info("Generating jwt..");
+
         String scope = authentication.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
