@@ -73,8 +73,6 @@ public class PersonControllerTests {
 
     @Test
     void getPersonByOibShouldReturn403ForbiddenForRetrievingWithRoleUser() throws Exception {
-        System.out.println(jwt().authorities(new SimpleGrantedAuthority("ROLE_USER")));
-
         this.mvc.perform(get("/person/15756467893")
                         .with(jwt().authorities(userRoleAuthority)))
                 .andDo(print())

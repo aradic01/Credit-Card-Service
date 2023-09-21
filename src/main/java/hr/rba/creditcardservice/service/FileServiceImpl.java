@@ -7,6 +7,7 @@ import hr.rba.creditcardservice.jpa.entity.file.FileStatus;
 import hr.rba.creditcardservice.jpa.repository.FileRepository;
 import hr.rba.creditcardservice.service.contract.FileService;
 import hr.rba.creditcardservice.service.contract.PersonService;
+import lombok.extern.slf4j.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class FileServiceImpl implements FileService {
 
     private final PersonService personService;
@@ -34,6 +36,9 @@ public class FileServiceImpl implements FileService {
     @Override
     @Transactional
     public FileDescriptor generateFile(String personOib) throws IOException {
+
+        log.info("Generating file for person with OIB: {}", personOib);
+
         PersonEntity person = personService.getPersonEntityByOib(personOib);
 
         updateActiveFilesStatus(person);
@@ -50,6 +55,9 @@ public class FileServiceImpl implements FileService {
     }
 
     private void updateActiveFilesStatus(PersonEntity person) {
+
+        log.info("Updating active files status to inactive..");
+
         Set<FileEntity> filesToUpdate = person.getFiles()
                 .stream()
                 .filter(f -> f.getStatus().equals(FileStatus.ACTIVE))
@@ -79,6 +87,9 @@ public class FileServiceImpl implements FileService {
     }
 
     private void saveFileInfoToDb(PersonEntity person, String name) {
+
+        log.info("Saving file to database..");
+
         FileEntity fileEntity = new FileEntity();
 
         fileEntity.setFileName(name);
