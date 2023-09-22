@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User registerNewUser(RegisterRequest registerRequest) {
 
-        log.info("Registering new user..");
+        log.info("*** Registering new user ***");
 
         var user = UserMapper.INSTANCE.mapTo(registerRequest);
 

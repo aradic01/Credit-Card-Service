@@ -1,4 +1,4 @@
-package hr.rba.creditcardservice.controller;
+package hr.rba.creditcardservice.api.controller;
 
 import hr.rba.creditcardservice.openapi.api.PersonApi;
 import hr.rba.creditcardservice.openapi.model.Person;

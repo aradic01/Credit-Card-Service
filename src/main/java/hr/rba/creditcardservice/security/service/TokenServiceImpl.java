@@ -22,7 +22,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String generateJwt(Authentication authentication) {
 
-        log.info("Generating jwt..");
+        log.info("*** Generating jwt ***");
 
         String scope = authentication.getAuthorities()
                 .stream()

@@ -56,7 +56,7 @@ public class FileServiceImpl implements FileService {
 
     private void updateActiveFilesStatus(PersonEntity person) {
 
-        log.info("Updating active files status to inactive..");
+        log.info("*** Updating active files status to inactive ***");
 
         Set<FileEntity> filesToUpdate = person.getFiles()
                 .stream()
@@ -88,7 +88,7 @@ public class FileServiceImpl implements FileService {
 
     private void saveFileInfoToDb(PersonEntity person, String name) {
 
-        log.info("Saving file to database..");
+        log.info("*** Saving file to database ***");
 
         FileEntity fileEntity = new FileEntity();
 

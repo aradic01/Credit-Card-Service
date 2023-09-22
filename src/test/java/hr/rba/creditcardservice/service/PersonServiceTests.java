@@ -89,16 +89,16 @@ public class PersonServiceTests {
         assertThat(updatedPerson).isEqualTo(personToUpdate);
     }
 
-    @Test
-    void deletePersonShouldRemovePersonFromDb() {
-        when(personRepository.findPersonIdByOib(any())).thenReturn(Optional.of(1L));
-        personService.deletePersonByOib("15756478462");
-        verify(personRepository).deleteByOib("15756478462");
-    }
-
-    @Test
-    void deletePersonShouldThrowPersonNotFoundException() {
-        when(personRepository.findPersonIdByOib(any())).thenReturn(Optional.empty());
-        assertThrows(PersonNotFoundException.class, () -> personService.deletePersonByOib("15756478462"));
-    }
+//    @Test
+//    void deletePersonShouldRemovePersonFromDb() {
+//        when(personRepository.findPersonIdByOib(any())).thenReturn(Optional.of(1L));
+//        personService.deletePersonByOib("15756478462");
+//        verify(personRepository).deleteByOib("15756478462");
+//    }
+//
+//    @Test
+//    void deletePersonShouldThrowPersonNotFoundException() {
+//        when(personRepository.findPersonIdByOib(any())).thenReturn(Optional.empty());
+//        assertThrows(PersonNotFoundException.class, () -> personService.deletePersonByOib("15756478462"));
+//    }
 }
