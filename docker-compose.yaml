@@ -1,6 +1,10 @@
 version: '3'
 
 services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
   app:
     image: credit-card-service:latest
     ports:
@@ -10,10 +14,11 @@ services:
       - SPRING_DATA_SOURCE_URL=jdbc:postgresql://postgres:5432/main_db
       - SPRING_DATA_SOURCE_USERNAME=postgres
       - SPRING_DATA_SOURCE_PASSWORD=postgres
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://zipkin:9411/api/v2/spans
   postgres:
     image: postgres:10
     ports:
-      - 5433:5432
+      - "5433:5432"
     container_name: postgres-db
     environment:
       POSTGRES_DB: main_db

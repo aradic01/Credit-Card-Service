@@ -20,7 +20,7 @@ public class RSAHelper {
     @PostConstruct
     private void loadKeys() throws InternalErrorException {
 
-        log.info("Inside loadKeys..");
+        log.info("*** Inside loadKeys ***");
 
         KeyPair keypair;
         try {
@@ -35,7 +35,7 @@ public class RSAHelper {
 
     public KeyPair generateRsaKeypair() throws NoSuchAlgorithmException {
 
-        log.info("Generating RSA keypair..");
+        log.info("*** Generating RSA keypair ***");
 
         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
         generator.initialize(2048);

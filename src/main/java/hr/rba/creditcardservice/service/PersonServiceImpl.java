@@ -29,7 +29,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person createPerson(Person person) {
 
-        log.info("Creating new person..");
+        log.info("*** Creating new person ***");
 
         if(personRepository.findByOib(person.getOib()).isPresent()) {
             throw new PersonAlreadyExistsException("Person with given OIB already exists!");
