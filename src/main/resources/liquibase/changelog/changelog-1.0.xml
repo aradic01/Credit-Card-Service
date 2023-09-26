@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1" author="aradic">
+        <createTable tableName="people">
+            <column name="person_id"
+                    type="bigint"
+                    autoIncrement="true" startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="people_pk"/>
+            </column>
+            <column name="first_name"
+                    type="varchar(255)">
+            </column>
+            <column name="last_name"
+                    type="varchar(255)">
+            </column>
+            <column name="oib"
+                    type="varchar(255)">
+            </column>
+            <column name="status"
+                    type="varchar(255)">
+                <constraints checkConstraint="CHECK (status in ('CLIENT', 'NON_CLIENT'))"/>
+            </column>
+        </createTable>
+        <createTable tableName="files">
+            <column name="id"
+                    type="bigint
+"                   autoIncrement="true"
+                    startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="files_pk"/>
+            </column>
+            <column name="file_name"
+                    type="varchar(255)">
+            </column>
+            <column name="status"
+                    type="varchar(255)">
+                <constraints checkConstraint="CHECK (status in ('ACTIVE', 'INACTIVE'))"/>
+            </column>
+            <column name="person_person_id"
+                    type="bigint">
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="files"
+                                 baseColumnNames="person_person_id"
+                                 constraintName="fk_files_people"
+                                 referencedTableName="people"
+                                 referencedColumnNames="person_id"/>
+        <createTable tableName="users">
+            <column name="user_id"
+                    type="bigint"
+                    autoIncrement="true"
+                    startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pk"/>
+            </column>
+            <column name="email"
+                    type="varchar(255)">
+            </column>
+            <column name="first_name"
+                    type="varchar(255)">
+            </column>
+            <column name="last_name"
+                    type="varchar(255)">
+            </column>
+            <column name="password"
+                    type="varchar(255)">
+            </column>
+            <column name="role"
+                    type="varchar(255)">
+            </column>
+            <column name="username"
+                    type="varchar(255)">
+            </column>
+        </createTable>
+        <sql>
+            ALTER TABLE users ADD CONSTRAINT role_check CHECK (role in ('USER', 'ADMIN', 'MANAGER'));
+            ALTER TABLE people ADD CONSTRAINT person_status_check CHECK (status in ('CLIENT', 'NON_CLIENT'));
+            ALTER TABLE files ADD CONSTRAINT file_status_check CHECK (status in ('ACTIVE', 'INACTIVE'));
+        </sql>
+    </changeSet>
+</databaseChangeLog>
