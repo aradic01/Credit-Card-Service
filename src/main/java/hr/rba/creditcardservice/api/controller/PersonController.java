@@ -6,6 +6,7 @@ import hr.rba.creditcardservice.service.contract.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.servlet.support.*;
 
 @Controller
 @Validated
@@ -19,8 +20,15 @@ public class PersonController implements PersonApi {
 
     @Override
     public ResponseEntity<Person> createPerson(Person person) {
-         return ResponseEntity.ok()
-                    .body(personService.createPerson(person));
+
+        var location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(person.getOib())
+                .toUri();
+
+        return ResponseEntity.created(location)
+                .body(personService.createPerson(person));
     }
 
     @Override
